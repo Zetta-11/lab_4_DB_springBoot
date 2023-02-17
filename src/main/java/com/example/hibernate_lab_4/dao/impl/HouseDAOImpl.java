@@ -1,47 +1,55 @@
-package com.example.hibernate_lab_4.dao;
+package com.example.hibernate_lab_4.dao.impl;
 
+import com.example.hibernate_lab_4.dao.HouseDAO;
+import com.example.hibernate_lab_4.entity.House;
 import com.example.hibernate_lab_4.entity.User;
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class HouseDAOImpl implements HouseDAO {
+
 
     @Autowired
     private EntityManager manager;
 
     @Override
-    public List<User> getAllUsers() {
+    @Transactional
+    public List<House> getAllHouses() {
         Session session = manager.unwrap(Session.class);
 
-        return session.createQuery("from User ", User.class).getResultList();
+        return session.createQuery("from House ", House.class).getResultList();
     }
 
     @Override
-    public void saveUser(User user) {
+    @Transactional
+    public void saveHouse(House house) {
         Session session = manager.unwrap(Session.class);
 
-        session.saveOrUpdate(user);
+        session.saveOrUpdate(house);
     }
 
     @Override
-    public User getUser(int id) {
+    @Transactional
+    public House getHouse(int id) {
         Session session = manager.unwrap(Session.class);
-        return session.get(User.class, id);
+        return session.get(House.class, id);
     }
 
     @Override
-    public void deleteUser(int id) {
+    @Transactional
+    public void deleteHouse(int id) {
         Session session = manager.unwrap(Session.class);
 
-        Query query = session.createQuery("delete from User where id =:e");
+        Query query = session.createQuery("delete from House where id =:e");
         query.setParameter("e", id);
         query.executeUpdate();
-        ;
+
     }
 }

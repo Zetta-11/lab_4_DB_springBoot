@@ -36,4 +36,10 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "property_house_id", referencedColumnName = "id")
     private House house;
+
+    public User(String login, String password, String accountType) {
+        this.login = login;
+        this.password = password;
+        this.accountType = accountType;
+    }
 }

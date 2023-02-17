@@ -1,7 +1,8 @@
-package com.example.hibernate_lab_4.service;
+package com.example.hibernate_lab_4.service.impl;
 
 import com.example.hibernate_lab_4.dao.UserDAO;
 import com.example.hibernate_lab_4.entity.User;
+import com.example.hibernate_lab_4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +31,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User getUser(int id) {
         return userDAO.getUser(id);
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        return userDAO.getUserByLogin(login);
     }
 
     @Override
