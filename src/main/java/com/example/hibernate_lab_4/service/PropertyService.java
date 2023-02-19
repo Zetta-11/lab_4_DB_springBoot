@@ -14,4 +14,5 @@ public interface PropertyService {
 
     public void deleteProperty(int id);
 
+    public Property getPropertyByNumber(int number);
 }

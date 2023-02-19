@@ -1,10 +1,7 @@
 package com.example.hibernate_lab_4.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "Tenants")
@@ -35,4 +32,12 @@ public class Tenant {
     @ManyToOne
     @JoinColumn(name = "property_id", referencedColumnName = "id")
     private Property property;
+
+    public Tenant(String name, String surname, String phone, User user, Property property) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.user = user;
+        this.property = property;
+    }
 }

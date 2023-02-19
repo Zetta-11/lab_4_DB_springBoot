@@ -43,6 +43,16 @@ public class PropertyDAOImpl implements PropertyDAO {
 
     @Override
     @Transactional
+    public Property getPropertyByNumber(int number) {
+        Session session = manager.unwrap(Session.class);
+        Query query = session.createQuery("from Property where number =:e");
+        query.setParameter("e", number);
+
+        return (Property) query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
     public void deleteProperty(int id) {
         Session session = manager.unwrap(Session.class);
 

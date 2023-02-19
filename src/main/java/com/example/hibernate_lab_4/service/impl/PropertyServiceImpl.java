@@ -30,7 +30,14 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public Property getPropertyByNumber(int number) {
+        return propertyDAO.getPropertyByNumber(number);
+    }
+
+    @Override
     public void deleteProperty(int id) {
         propertyDAO.deleteProperty(id);
     }
+
+
 }

@@ -12,5 +12,7 @@ public interface PropertyDAO {
 
     public Property getProperty(int id);
 
+    public Property getPropertyByNumber(int number);
+
     public void deleteProperty(int id);
 }
