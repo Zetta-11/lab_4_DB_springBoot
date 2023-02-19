@@ -18,7 +18,6 @@ public class AllUsersController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private HouseService houseService;
 
