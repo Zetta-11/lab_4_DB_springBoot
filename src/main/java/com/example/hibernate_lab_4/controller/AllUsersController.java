@@ -27,13 +27,13 @@ public class AllUsersController {
 
         model.addAttribute("allUsers", users);
 
-        return "all-users";
+        return "user/all-users";
     }
 
     @GetMapping("/allUsers/addUser")
-    public String addUser(Model model) {
+    public String addUser() {
 
-        return "add-user";
+        return "user/add-user";
     }
 
     @PostMapping("/allUsers/addUser")
@@ -55,7 +55,7 @@ public class AllUsersController {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
 
-        return "user-edit";
+        return "user/user-edit";
     }
 
     @PostMapping("/allUsers/{id}/edit")

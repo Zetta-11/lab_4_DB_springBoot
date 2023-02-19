@@ -19,10 +19,8 @@ public class TenantsController {
 
     @Autowired
     TenantService tenantService;
-
     @Autowired
     PropertyService propertyService;
-
     @Autowired
     UserService userService;
 
@@ -32,7 +30,7 @@ public class TenantsController {
 
         model.addAttribute("allTenants", tenants);
 
-        return "all-tenants";
+        return "tenant/all-tenants";
     }
 
     @GetMapping("/addTenant")
@@ -41,7 +39,7 @@ public class TenantsController {
         model.addAttribute("allProperties", properties);
         model.addAttribute("allUsers", userService.getAllUsers());
 
-        return "add-tenant";
+        return "tenant/add-tenant";
     }
 
     @PostMapping("/addTenant")
@@ -58,7 +56,48 @@ public class TenantsController {
     }
 
     @GetMapping("/{id}/property")
-    public String getProperty(@PathVariable(value = "id") Integer id) {
-        return "";
+    public String getProperty(@PathVariable(value = "id") Integer id, Model model) {
+        model.addAttribute("properties", propertyService.getProperty(id));
+
+        return "all-properties";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editTenant(@PathVariable(value = "id") Integer id, Model model) {
+        if (tenantService.getTenant(id) == null) {
+            return "redirect:/allTenants";
+        }
+
+        Tenant tenant = tenantService.getTenant(id);
+
+        model.addAttribute("allProperties", propertyService.getAllProperties());
+        model.addAttribute("allUsers", userService.getAllUsers());
+        model.addAttribute("tenant", tenant);
+
+        return "tenant/tenant-edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editTenant(@PathVariable(value = "id") Integer id, @RequestParam String name,
+                             @RequestParam String surname, @RequestParam String phone,
+                             @RequestParam Integer propertyNumber, @RequestParam String userLogin) {
+
+        Tenant tenant = tenantService.getTenant(id);
+
+        tenant.setName(name);
+        tenant.setSurname(surname);
+        tenant.setPhone(phone);
+        tenant.setProperty(propertyService.getPropertyByNumber(propertyNumber));
+        tenant.setUser(userService.getUserByLogin(userLogin));
+        tenantService.saveTenant(tenant);
+
+        return "redirect:/allTenants";
+    }
+
+    @PostMapping("/{id}/remove")
+    public String deleteTenant(@PathVariable(value = "id") Integer id) {
+        tenantService.deleteTenant(id);
+
+        return "redirect:/allTenants";
     }
 }

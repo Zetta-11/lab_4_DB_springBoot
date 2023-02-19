@@ -7,7 +7,8 @@
 </head>
 <body>
 <br><br>
-<a href="allUsers/addUser" class="btn btn-warning">All users</a>
+<a href="allUsers/addUser" class="btn btn-warning">Add user</a>
+<button onclick="javascript:window.print()">PRINT</button>
 <div th:each="user : ${allUsers}" class="alert alert-info mt-2" style="align-items: center">
     <h3 th:text="${user.getId()}"/>
     <p th:text="${user.getLogin()}"/>

@@ -8,12 +8,13 @@
 <body>
 <br><br>
 <a href="allTenants/addTenant" class="btn btn-warning">Add new tenant</a>
+<button onclick="javascript:window.print()">PRINT</button>
 <div th:each="tenant : ${allTenants}" class="alert alert-info mt-2" style="align-items: center">
     <h3 th:text="${tenant.id}"/>
     <p th:text="${tenant.name}"/>
     <p th:text="${tenant.surname}"/>
     <p th:text="${tenant.phone}"/>
-    <a th:href="'/allTenants/' + ${tenant.id} + '/property'" class="btn btn-warning">Get property</a>
+    <a th:href="'/allTenants/' + ${tenant.property.id} + '/property'" class="btn btn-warning">Get property</a>
     <br><br>
     <a th:href="'/allTenants/' + ${tenant.id} + '/edit'" class="btn btn-warning">Edit</a>
     <br><br>
