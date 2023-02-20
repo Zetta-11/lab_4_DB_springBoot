@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class NewsDAOImpl implements NewsDAO {
     private EntityManager manager;
 
     @Override
+    @Transactional
     public List<News> getAllNews() {
         Session session = manager.unwrap(Session.class);
 
@@ -24,12 +26,14 @@ public class NewsDAOImpl implements NewsDAO {
     }
 
     @Override
+    @Transactional
     public void saveNews(News news) {
         Session session = manager.unwrap(Session.class);
         session.persist(news);
     }
 
     @Override
+    @Transactional
     public News getNews(int id) {
         Session session = manager.unwrap(Session.class);
 
@@ -37,6 +41,7 @@ public class NewsDAOImpl implements NewsDAO {
     }
 
     @Override
+    @Transactional
     public void deleteNews(int id) {
         Session session = manager.unwrap(Session.class);
 

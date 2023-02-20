@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add news</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Add news</h1>
+    <br><br>
+    <form th:action="@{/allNews/addNews}" th:method="POST" th:object="${news}">
+        <input type="text" name="type" placeholder="Enter type" class="form-control" th:field="*{type}">
+        <div style="color:red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Name error</div>
+        <br>
+        <textarea name="info" placeholder="Enter info" class="form-control" th:field="*{info}"/>
+        <div style="color:red" th:if="${#fields.hasErrors('info')}" th:errors="*{info} ">Name error</div>
+        <br>
+        <button type="submit" class="button btn-success">Add news</button>
+    </form>
+</div>
+</body>
+</html>
