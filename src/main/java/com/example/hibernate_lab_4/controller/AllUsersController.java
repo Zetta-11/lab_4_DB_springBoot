@@ -3,13 +3,12 @@ package com.example.hibernate_lab_4.controller;
 import com.example.hibernate_lab_4.entity.User;
 import com.example.hibernate_lab_4.service.HouseService;
 import com.example.hibernate_lab_4.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,19 +30,22 @@ public class AllUsersController {
     }
 
     @GetMapping("/allUsers/addUser")
-    public String addUser() {
+    public String addUser(Model model) {
+        model.addAttribute("user", new User());
 
         return "user/add-user";
     }
 
     @PostMapping("/allUsers/addUser")
-    public String addUser(Model model, @RequestParam String login, @RequestParam String password,
-                          @RequestParam String accountType) {
-        User user = new User(login, password, accountType);
-        user.setHouse(houseService.getHouse(1));
-        userService.saveUser(user);
+    public String addUser (@ModelAttribute("user") @Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "user/add-user";
+        } else {
+            user.setHouse(houseService.getHouse(1));
+            userService.saveUser(user);
 
-        return "redirect:/allUsers";
+            return "redirect:/allUsers";
+        }
     }
 
     @GetMapping("/allUsers/{id}/edit")

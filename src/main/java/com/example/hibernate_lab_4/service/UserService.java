@@ -14,5 +14,9 @@ public interface UserService {
 
     public User getUserByLogin(String login);
 
+    public List<User> getNullWorkerUsers();
+
+    public List<User> getNullTenantUsers();
+
     public void deleteUser(int id);
 }

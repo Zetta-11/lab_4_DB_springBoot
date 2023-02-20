@@ -40,4 +40,12 @@ public class Worker {
 
     @OneToMany(mappedBy = "worker")
     private List<Maintenance> maintenances;
+
+    public Worker(String name, String surname, String phone, String specialization, User user) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.specialization = specialization;
+        this.user = user;
+    }
 }

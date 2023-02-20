@@ -37,7 +37,7 @@ public class TenantsController {
     public String addTenant(Model model) {
         List<Property> properties = propertyService.getAllProperties();
         model.addAttribute("allProperties", properties);
-        model.addAttribute("allUsers", userService.getAllUsers());
+        model.addAttribute("allUsers", userService.getNullTenantUsers());
 
         return "tenant/add-tenant";
     }

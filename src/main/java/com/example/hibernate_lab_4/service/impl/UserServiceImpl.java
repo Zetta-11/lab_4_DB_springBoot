@@ -39,6 +39,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getNullWorkerUsers() {
+        return userDAO.getNullWorkerUsers();
+    }
+
+    @Override
+    public List<User> getNullTenantUsers() {
+        return userDAO.getNullTenantUsers();
+    }
+
+    @Override
     @Transactional
     public void deleteUser(int id) {
         userDAO.deleteUser(id);
