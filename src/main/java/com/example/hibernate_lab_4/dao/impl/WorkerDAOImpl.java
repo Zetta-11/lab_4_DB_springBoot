@@ -47,7 +47,7 @@ public class WorkerDAOImpl implements WorkerDAO {
     public void deleteWorker(int id) {
         Session session = manager.unwrap(Session.class);
 
-        Query query = session.createQuery("delete from Worker where id=:e", Worker.class);
+        Query query = session.createQuery("delete from Worker where id=:e");
         query.setParameter("e", id);
         query.executeUpdate();
     }

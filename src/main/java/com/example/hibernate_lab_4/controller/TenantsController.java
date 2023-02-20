@@ -71,7 +71,7 @@ public class TenantsController {
         Tenant tenant = tenantService.getTenant(id);
 
         model.addAttribute("allProperties", propertyService.getAllProperties());
-        model.addAttribute("allUsers", userService.getAllUsers());
+        model.addAttribute("allUsers", userService.getNullTenantUsers());
         model.addAttribute("tenant", tenant);
 
         return "tenant/tenant-edit";

@@ -9,10 +9,7 @@ import com.example.hibernate_lab_4.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,6 +45,39 @@ public class WorkersController {
         Worker worker = new Worker(name, surname, phone, specialization, user);
 
         workerService.saveWorker(worker);
+
+        return "redirect:/allWorkers";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editWorker(@PathVariable(value = "id") Integer id, Model model) {
+        if (workerService.getWorker(id) == null) {
+            return "redirect:/allWorkers";
+        }
+        model.addAttribute("worker", workerService.getWorker(id));
+
+        return "worker/worker-edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editWorker(@PathVariable(value = "id") Integer id, @RequestParam String name,
+                             @RequestParam String surname, @RequestParam String phone,
+                             @RequestParam String specialization) {
+
+        Worker worker = workerService.getWorker(id);
+
+        worker.setName(name);
+        worker.setSurname(surname);
+        worker.setPhone(phone);
+        worker.setSpecialization(specialization);
+        workerService.saveWorker(worker);
+
+        return "redirect:/allWorkers";
+    }
+
+    @PostMapping("/{id}/remove")
+    public String deleteWorker(@PathVariable(value = "id") Integer id) {
+        workerService.deleteWorker(id);
 
         return "redirect:/allWorkers";
     }
