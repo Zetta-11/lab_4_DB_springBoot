@@ -10,6 +10,6 @@ public class PropertiesController {
 
     @GetMapping("")
     public String getAllProperties() {
-        return "all-properties";
+        return "property/all-properties";
     }
 }

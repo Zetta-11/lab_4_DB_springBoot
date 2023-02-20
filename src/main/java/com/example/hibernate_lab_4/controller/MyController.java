@@ -27,11 +27,11 @@ public class MyController {
         if (user == null) {
             return "redirect:/login";
         } else if (user.getAccountType().equals("tenant")) {
-            return "tenant-panel";
+            return "panel/tenant-panel";
         } else if (user.getAccountType().equals("admin")) {
-        return "admin-panel";
+        return "panel/admin-panel";
         } else {
-            return "worker-panel";
+            return "panel/worker-panel";
         }
     }
 }
