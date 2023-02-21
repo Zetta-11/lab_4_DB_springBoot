@@ -29,6 +29,14 @@ public class NewsController {
         return "news/all-news";
     }
 
+    @GetMapping("/workerTenant")
+    public String showNewsForWorkerAndTenant(Model model) {
+
+        model.addAttribute("news", newsService.getAllNews());
+
+        return "workerAndTenantPages/all-news";
+    }
+
     @GetMapping("/addNews")
     public String addNews(Model model) {
 

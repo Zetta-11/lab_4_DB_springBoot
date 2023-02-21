@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByLoginAndPassword(String login, String pass) {
+        return userDAO.getUserByLoginAndPassword(login, pass);
+    }
+
+    @Override
     public List<User> getNullWorkerUsers() {
         return userDAO.getNullWorkerUsers();
     }

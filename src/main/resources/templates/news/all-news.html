@@ -11,6 +11,7 @@
 <H1>News</H1>
 <br><br>
 <a href="allNews/addNews" class="btn btn-warning">Add news</a>
+<button onclick="javascript:window.print()" class="btn">PRINT</button>
 <div th:each="n : ${news}" class="alert alert-info mt-2" style="align-items: center">
     ID: <h3 th:text="${n.id}"/>
     TYPE: <p th:text="${n.type}"/>

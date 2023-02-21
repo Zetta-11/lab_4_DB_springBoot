@@ -14,6 +14,8 @@ public interface UserService {
 
     public User getUserByLogin(String login);
 
+    public User getUserByLoginAndPassword(String login, String pass);
+
     public List<User> getNullWorkerUsers();
 
     public List<User> getNullTenantUsers();

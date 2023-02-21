@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -72,6 +71,21 @@ public class UserDAOImpl implements UserDAO {
         User user;
         try {
             user = session.createQuery("from User where login = :login", User.class).setParameter("login", login).getSingleResult();
+            return user;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public User getUserByLoginAndPassword(String login, String pass) {
+        Session session = manager.unwrap(Session.class);
+        User user;
+        try {
+            user = session.createQuery("from User where login = :login and password = :pass", User.class)
+                    .setParameter("login", login)
+                    .setParameter("pass", pass)
+                    .getSingleResult();
             return user;
         } catch (Exception e) {
             return null;

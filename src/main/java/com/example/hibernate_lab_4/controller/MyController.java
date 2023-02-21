@@ -21,8 +21,8 @@ public class MyController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String login, @RequestParam String password, Model model) {
-        User user = userService.getUserByLogin(login);
+    public String login(@RequestParam String login, @RequestParam String password) {
+        User user = userService.getUserByLoginAndPassword(login, password);
 
         if (user == null) {
             return "redirect:/login";

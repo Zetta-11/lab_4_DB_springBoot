@@ -59,7 +59,7 @@ public class TenantsController {
     public String getProperty(@PathVariable(value = "id") Integer id, Model model) {
         model.addAttribute("properties", propertyService.getProperty(id));
 
-        return "all-properties";
+        return "property/all-properties";
     }
 
     @GetMapping("/{id}/edit")

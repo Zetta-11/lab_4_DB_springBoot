@@ -9,12 +9,19 @@
 
 <H1>Properties</H1>
 <br><br>
+<a href="allProperties/addProperty" class="btn btn-warning">Add property</a>
+<button onclick="javascript:window.print()" class="btn">PRINT</button>
 <div th:each="prop : ${properties}" class="alert alert-info mt-2" style="align-items: center">
   ID: <h3 th:text="${prop.id}"/>
   FLOOR: <p th:text="${prop.floor}"/>
   NUMBER: <p th:text="${prop.number}"/>
   SQUARE: <p th:text="${prop.square}"/>
   ROOMS QUANTITY: <p th:text="${prop.roomsQuantity}"/>
+  <a th:href="'/allProperties/' + ${prop.id} + '/edit'" class="btn btn-warning">Edit</a>
+  <br><br>
+  <form th:action="'/allProperties/' + ${prop.id} + '/remove'" method="post">
+    <button type="submit" class="btn btn-warning">Delete</button>
+  </form>
 </div>
 
 </body>

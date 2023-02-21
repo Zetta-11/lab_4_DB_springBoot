@@ -30,6 +30,15 @@ public class WorkersController {
         return "worker/all-workers";
     }
 
+    @GetMapping("/worker")
+    public String showWorkersForWorker(Model model) {
+        List<Worker> workers = workerService.getAllWorkers();
+
+        model.addAttribute("allWorkers", workers);
+
+        return "workerAndTenantPages/all-workers";
+    }
+
     @GetMapping("/addWorker")
     public String addTenant(Model model) {
         model.addAttribute("allUsers", userService.getNullWorkerUsers());
